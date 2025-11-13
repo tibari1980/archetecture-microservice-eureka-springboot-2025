@@ -1,14 +1,22 @@
 package com.atos.cutomerservice.service.impl;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.atos.customerservice.service.CustomerService;
 import com.atos.cutomerservice.dto.CustomerDTO;
+import com.atos.cutomerservice.entity.CustomerEntity;
+import com.atos.cutomerservice.mapper.CustomerMapper;
+import com.atos.cutomerservice.repository.CustomerRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +26,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class CustomerServiceImpl implements CustomerService {
+	
+	
+	private CustomerRepository customerRepository;
 
 	@Override
 	public CustomerDTO addCustomer(CustomerDTO customerDTO) {
@@ -55,6 +67,23 @@ public class CustomerServiceImpl implements CustomerService {
 			Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<CustomerDTO> getAllCustomersByFirstNameOrLastNameContaining(String partialLastNameOrFirstName, int page,
+			int limit) {
+		
+		log.info("Inside method GetAllCustomersByFirstNameOrLastNameContaining of CustomerServiceImpl   partialLastNameOrFirstName : {} ,  page : {} , limit : {}",partialLastNameOrFirstName,page,limit  );
+		
+			page=(page>0) ? page+1: page;
+			Pageable pageable=PageRequest.of(page, limit,Sort.by("code").ascending());
+		    Page<CustomerEntity> pageCustomers=customerRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(partialLastNameOrFirstName, partialLastNameOrFirstName, pageable);
+		    List<CustomerEntity> lstCutomers=pageCustomers.getContent();
+		    List<CustomerDTO> lstCustomerDtos=lstCutomers.stream().map(CustomerMapper::mapToCustomerDTO).collect(Collectors.toList());
+		    
+		    
+		log.info("Customers find successfully   size : {}", lstCustomerDtos.size());
+		return lstCustomerDtos;
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.atos.customerservice.service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -62,4 +63,7 @@ public interface CustomerService {
 	 */
 	Page<CustomerDTO> searchCustomers(String firstName, String lastName, String email, LocalDate dateOfBirth,
 			Pageable pageable);
+
+	List<CustomerDTO> getAllCustomersByFirstNameOrLastNameContaining(final String partialLastNameOrFirstName,
+			final int page, final int limit);
 }

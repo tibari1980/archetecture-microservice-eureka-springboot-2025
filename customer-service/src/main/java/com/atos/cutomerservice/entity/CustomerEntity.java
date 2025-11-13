@@ -20,6 +20,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -49,27 +50,27 @@ public class CustomerEntity {
 	@Column(name = "CODE", nullable = false)
 	private Long code;
 	@NotBlank(message = "First name is mandatory")
-	@Size(max = 50, message = "First name  must be at  most 50 characters")
+	@Size(min = 3, max = 50, message = "First name  must be between 3 an  50 characters")
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
-	@NotBlank(message = "Last name is mandatory !!")
-	@Size(max = 50, message = "Last name must be at most 50 characters")
+	//@NotBlank(message = "Last name is mandatory !!")
+	@Size(min = 3, max = 50, message = "Last name must be between  3 and  50 characters")
 	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
-	@NotBlank(message = "Date of birth is mandatory")
+	@NotNull(message = "Date of birth is mandatory")
 	@Past(message = "Date of birth must be in the past !!")
 	@Column(name = "DATE_OF_BIRTH", nullable = false)
 	private Date dateOfBirth;
 	@NotBlank(message = "Address is mandatory !!")
-	@Size(max = 255, message = "Address must be at most 255 characters!!!")
+	@Size(min = 10, max = 255, message = "Address must be between 10 and  255 characters!!!")
 	@Column(name = "ADDRESS", nullable = false)
 	private String address;
 	@NotBlank(message = "Email is mandatory !!!")
 	@Email(message = "Email should be valid !!!!")
-	@Size(max = 100, message = "Email must be at most 100 characters !!!")
-	@Column(name = "EMAIL", nullable = false)
+	@Size(min = 2, max = 100, message = "Email must be between 2 and  100 characters !!!")
+	@Column(name = "EMAIL", nullable = false,unique = true)
 	private String email;
-	@NotBlank(message = "Age is mandatory")
+	@NotNull(message = "Age is mandatory")
 	@Min(value = 0, message = "Age must be positive !!!")
 	@Max(value = 150, message = "Age must be realistic")
 	@Column(name = "AGE", nullable = false)
