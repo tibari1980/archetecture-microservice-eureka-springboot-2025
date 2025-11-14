@@ -41,7 +41,7 @@ public interface CustomerService {
 	 * @param customerId ID du client à rechercher
 	 * @return Optional contenant le client s'il existe
 	 */
-	Optional<CustomerDTO> findCustomerById(Long customerId);
+	CustomerDTO findCustomerById(Long customerId);
 
 	/**
 	 * Retourne tous les clients avec pagination.

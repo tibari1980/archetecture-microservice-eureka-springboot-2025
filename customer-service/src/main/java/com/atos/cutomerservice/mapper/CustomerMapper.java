@@ -9,21 +9,45 @@ public class CustomerMapper {
 
 	public static CustomerDTO mapToCustomerDTO(CustomerEntity e) {
 
-		return CustomerDTO.builder().code(e.getCode()).lastName(e.getLastName()).firstName(e.getFirstName())
-				.email(e.getEmail()).address(e.getAddress()).phone(e.getPhone()).createdAt(e.getCreatedAt())
-				.updateAt(e.getUpdateAt()).dateOfBirth(e.getDateOfBirth()).build();
+		return CustomerDTO.builder().
+				code(e.getCode())
+				.lastName(e.getLastName())
+				.firstName(e.getFirstName())
+				.email(e.getEmail()).address(e.getAddress())
+				.phone(e.getPhone())
+				.uid(e.getUid())
+				.createdAt(e.getCreatedAt())
+				.updateAt(e.getUpdateAt())
+				.dateOfBirth(e.getDateOfBirth())
+				.age(e.getAge())
+				.build();
 	}
 
 	public static CustomerResponse mapToCustomerResponse(CustomerDTO e) {
 
 		return CustomerResponse.builder().code(e.getCode()).lastName(e.getLastName()).firstName(e.getFirstName())
-				.email(e.getEmail()).address(e.getAddress()).phone(e.getPhone()).createdAt(e.getCreatedAt())
-				.updateAt(e.getUpdateAt()).dateOfBirth(e.getDateOfBirth()).build();
+				.email(e.getEmail())
+				.address(e.getAddress())
+				.phone(e.getPhone())
+				.uid(e.getUid())
+				.createdAt(e.getCreatedAt())
+				.updateAt(e.getUpdateAt())
+				.dateOfBirth(e.getDateOfBirth())
+				.age(e.getAge())
+				.build();
 	}
 
 	public static CustomerDTO mapCustomerRequestToCustomerDto(CustomerRequest e) {
-		return CustomerDTO.builder().code(e.getCode()).lastName(e.getLastName()).firstName(e.getFirstName())
-				.email(e.getEmail()).address(e.getAddress()).phone(e.getPhone()).createdAt(e.getCreatedAt())
-				.updateAt(e.getUpdateAt()).dateOfBirth(e.getDateOfBirth()).build();
+		return CustomerDTO.builder().code(e.getCode())
+				.lastName(e.getLastName())
+				.firstName(e.getFirstName())
+				.email(e.getEmail())
+				.address(e.getAddress())
+				.phone(e.getPhone())
+				.createdAt(e.getCreatedAt())
+				.updateAt(e.getUpdateAt())
+				.dateOfBirth(e.getDateOfBirth())
+				.age(e.getAge())
+				.build();
 	}
 }

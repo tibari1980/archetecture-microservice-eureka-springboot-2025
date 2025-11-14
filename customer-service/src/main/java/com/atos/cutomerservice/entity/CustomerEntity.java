@@ -11,8 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -89,17 +87,6 @@ public class CustomerEntity {
 	@Column(name = "UPDATED_AT")
 	private Instant updateAt;
 
-	// rempli automatiquement createdAt et updatedAt avant insertion
-	@PrePersist
-	protected void onCreate() {
-		createdAt = Instant.now();
-		updateAt = Instant.now();
-	}
 
-	// met à jour updateAt avant chaque mise à jour
-	@PreUpdate
-	protected void updateAt() {
-		updateAt = Instant.now();
-	}
 
 }

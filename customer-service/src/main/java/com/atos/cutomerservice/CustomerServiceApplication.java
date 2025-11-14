@@ -2,7 +2,6 @@ package com.atos.cutomerservice;
 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.UUID;
@@ -30,7 +29,7 @@ public class CustomerServiceApplication {
 			
 			for(int i=1 ;i<50;i++) {
 				CustomerEntity entity=CustomerEntity.builder()
-						.firstName("Custimer"+i)
+						.firstName("Custimer tibari "+i)
 						.lastName("Customer Last Name"+i)
 						.age (50)
 						.dateOfBirth(Date.from(LocalDate.of(1990, 5, 20).atStartOfDay(ZoneId.systemDefault()).toInstant()))
