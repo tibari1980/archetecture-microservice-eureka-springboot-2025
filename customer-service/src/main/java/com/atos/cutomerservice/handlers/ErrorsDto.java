@@ -19,4 +19,5 @@ public class ErrorsDto {
 	private CodeErrors codeErros;
 	private String message;
 	private List<String> errors;
+	private String dateException;
 }

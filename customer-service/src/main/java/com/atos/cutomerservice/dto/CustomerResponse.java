@@ -1,7 +1,7 @@
 package com.atos.cutomerservice.dto;
 
 import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +21,7 @@ public class CustomerResponse {
 	private Long code;
 	private String firstName;
 	private String lastName;
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	private String address;
 	private String email;
 	private Integer age;

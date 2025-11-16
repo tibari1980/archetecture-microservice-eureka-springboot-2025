@@ -2,7 +2,6 @@ package com.atos.cutomerservice.service.impl;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import com.atos.cutomerservice.exception.EntityNotFoundException;
 import com.atos.cutomerservice.mapper.CustomerMapper;
 import com.atos.cutomerservice.repository.CustomerRepository;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service

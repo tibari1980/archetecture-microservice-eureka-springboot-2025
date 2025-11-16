@@ -2,8 +2,6 @@ package com.atos.cutomerservice;
 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.boot.CommandLineRunner;
@@ -32,7 +30,7 @@ public class CustomerServiceApplication {
 						.firstName("Custimer tibari "+i)
 						.lastName("Customer Last Name"+i)
 						.age (50)
-						.dateOfBirth(Date.from(LocalDate.of(1990, 5, 20).atStartOfDay(ZoneId.systemDefault()).toInstant()))
+						.dateOfBirth(LocalDate.parse("1982-12-08"))
 						.createdAt(Instant.now())
 						.updateAt(Instant.now())
                         .phone("+33625491640")

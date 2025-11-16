@@ -1,7 +1,7 @@
 package com.atos.cutomerservice.entity;
 
 import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -51,14 +51,14 @@ public class CustomerEntity {
 	@Size(min = 3, max = 50, message = "First name  must be between 3 an  50 characters")
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
-	//@NotBlank(message = "Last name is mandatory !!")
+	// @NotBlank(message = "Last name is mandatory !!")
 	@Size(min = 3, max = 50, message = "Last name must be between  3 and  50 characters")
 	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 	@NotNull(message = "Date of birth is mandatory")
 	@Past(message = "Date of birth must be in the past !!")
 	@Column(name = "DATE_OF_BIRTH", nullable = false)
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	@NotBlank(message = "Address is mandatory !!")
 	@Size(min = 10, max = 255, message = "Address must be between 10 and  255 characters!!!")
 	@Column(name = "ADDRESS", nullable = false)
@@ -66,7 +66,7 @@ public class CustomerEntity {
 	@NotBlank(message = "Email is mandatory !!!")
 	@Email(message = "Email should be valid !!!!")
 	@Size(min = 2, max = 100, message = "Email must be between 2 and  100 characters !!!")
-	@Column(name = "EMAIL", nullable = false,unique = true)
+	@Column(name = "EMAIL", nullable = false, unique = true)
 	private String email;
 	@NotNull(message = "Age is mandatory")
 	@Min(value = 0, message = "Age must be positive !!!")
@@ -74,8 +74,7 @@ public class CustomerEntity {
 	@Column(name = "AGE", nullable = false)
 	private Integer age;
 	@NotBlank(message = "Phone number is mandatory !!!")
-	@Pattern(regexp = "\\+?[0-9]{7,15}", message = "Phone number must be valid")
-
+	@Pattern(regexp = "^\\+?[1-9]\\d{1,14}$", message = "Numéro invalide (doit respecter E.164, ex: +33625491640)")
 	@Column(name = "PHONE", nullable = false)
 	private String phone;
 	@Column(name = "UID")
@@ -86,7 +85,5 @@ public class CustomerEntity {
 	@UpdateTimestamp
 	@Column(name = "UPDATED_AT")
 	private Instant updateAt;
-
-
 
 }

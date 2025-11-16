@@ -6,21 +6,25 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atos.customerservice.service.CustomerService;
 import com.atos.cutomerservice.controller.CustomerController;
 import com.atos.cutomerservice.dto.CustomerDTO;
+import com.atos.cutomerservice.dto.CustomerRequest;
 import com.atos.cutomerservice.dto.CustomerResponse;
 import com.atos.cutomerservice.mapper.CustomerMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
-//@CrossOrigin(origins = "http://localhost:8082")
+@CrossOrigin(origins = "http://localhost:8082")
 @RestController
 @RequestMapping(value = "/api/v1/customers")
 @Slf4j
+@Validated
 public class CustomerControllerImpl implements CustomerController {
 
 	@Autowired
@@ -59,6 +63,16 @@ public class CustomerControllerImpl implements CustomerController {
 		CustomerResponse response = CustomerMapper.mapToCustomerResponse(dto);
 
 		return ResponseEntity.ok(response); // HTTP 200
+	}
+
+	@Override
+	public ResponseEntity<CustomerResponse> createCustomer(CustomerRequest cu) {
+
+		log.info("CustomerControllerImp.createCustomer() called with payload : {}  ",cu);
+		CustomerDTO dto=customerService.addCustomer(CustomerMapper.mapToCustomerDTO(cu));
+		System.out.println("Hello mec");
+		
+		return null;
 	}
 
 }
