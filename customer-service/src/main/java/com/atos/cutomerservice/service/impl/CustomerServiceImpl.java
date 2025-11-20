@@ -97,4 +97,16 @@ public class CustomerServiceImpl implements CustomerService {
 		return lstCustomerDtos;
 	}
 
+	@Override
+	public CustomerDTO findCustomerByUId(String uid) {
+		log.info(" CustomerServiceImpl.findCustomerByUi(uid) with param uid ", uid);
+
+		CustomerEntity existingCustomer = customerRepository.findByUid(uid)
+				.orElseThrow(() -> new EntityNotFoundException("Customer with `" + uid + "` not found in our database",
+						CodeErrors.CUSTOMER_NOT_FOUND));
+
+		log.info("Customer finded successfully   : {}", existingCustomer.toString());
+		return CustomerMapper.mapToCustomerDTO(existingCustomer);
+	}
+
 }

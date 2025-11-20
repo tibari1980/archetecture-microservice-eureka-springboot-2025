@@ -65,4 +65,7 @@ public interface CustomerService {
 
 	List<CustomerDTO> getAllCustomersByFirstNameOrLastNameContaining(final String partialLastNameOrFirstName,
 			final int page, final int limit);
+	
+	
+	CustomerDTO  findCustomerByUId(String uid);
 }

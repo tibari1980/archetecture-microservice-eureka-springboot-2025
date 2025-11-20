@@ -25,7 +25,7 @@ public class CustomerServiceApplication {
 		
 		return args->{
 			
-			for(int i=1 ;i<50;i++) {
+			for(int i=1 ;i<5000;i++) {
 				CustomerEntity entity=CustomerEntity.builder()
 						.firstName("Custimer tibari "+i)
 						.lastName("Customer Last Name"+i)

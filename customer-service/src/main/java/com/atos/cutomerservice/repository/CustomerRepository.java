@@ -12,13 +12,12 @@ import com.atos.cutomerservice.entity.CustomerEntity;
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
 
-	
-	 Page<CustomerEntity> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(
-	            String firstNamePart, 
-	            String lastNamePart, 
-	            Pageable pageable
-	    );
-      //search customer by id
+	Page<CustomerEntity> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(String firstNamePart,
+			String lastNamePart, Pageable pageable);
+
+	// search customer by id
 	Optional<CustomerEntity> findByCode(final Long code);
-	
-} 
+
+	// Search Customer by UId
+	Optional<CustomerEntity> findByUid(final String uid);
+}

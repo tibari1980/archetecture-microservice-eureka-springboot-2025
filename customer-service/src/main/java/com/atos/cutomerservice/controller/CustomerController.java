@@ -33,7 +33,13 @@ public interface CustomerController {
 			@PathVariable @Positive(message = "Customer  ID must be greater than zero") Long code);
 
 	
-	// http://localhost:8082/api/v1/customers/
+     	// http://localhost:8082/api/v1/customers/
 		@PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<CustomerResponse> createCustomer(@RequestBody @Valid CustomerRequest customerRequest);
+
+
+		
+		
+		   @GetMapping(value="/findByUid/{uid}" ,produces = MediaType.APPLICATION_JSON_VALUE)
+		 public ResponseEntity<CustomerResponse> findCustomerByUid( @PathVariable(value="utd") String uid);
 }

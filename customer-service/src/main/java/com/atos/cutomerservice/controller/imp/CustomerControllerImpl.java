@@ -69,10 +69,28 @@ public class CustomerControllerImpl implements CustomerController {
 	public ResponseEntity<CustomerResponse> createCustomer(CustomerRequest cu) {
 
 		log.info("CustomerControllerImp.createCustomer() called with payload : {}  ",cu);
-		CustomerDTO dto=customerService.addCustomer(CustomerMapper.mapToCustomerDTO(cu));
+		CustomerDTO dto=customerService.addCustomer(CustomerMapper.mapCustomerRequestToCustomerDto(cu));
 		System.out.println("Hello mec");
 		
 		return null;
 	}
 
+	@Override
+	public ResponseEntity<CustomerResponse> findCustomerByUid(String uid) {
+		log.info("CustomerControllerImp.findByUid()  called with parametre  : Uid Customer : {}", uid);
+		if(uid.isEmpty() || uid.isBlank()) {
+		      log.error("Uid Customer is not valid try again   uid : {}",uid);
+		   return  ResponseEntity.badRequest().build();      
+		}
+		
+		// Appel service (peut lever EntityNotFoundException, géré par
+		//RestControllerAdavance
+		CustomerDTO cutomerDto=customerService.findCustomerByUId(uid);
+		CustomerResponse ctResponse=CustomerMapper.mapToCustomerResponse(cutomerDto);
+		
+
+				return  ResponseEntity.ok(ctResponse);
+	}
+
+	
 }
